@@ -14,7 +14,7 @@
 
         body {
             font-family: 'Roboto', sans-serif;
-            background: url('your-image-url.jpg') no-repeat center center fixed; /* Replace 'your-image-url.jpg' with your main background image */
+            background: url('your-image-url.jpg') no-repeat center center fixed;
             background-size: cover;
             color: white;
             text-align: center;
@@ -65,7 +65,7 @@
         .button {
             position: relative;
             padding: 20px 40px;
-            color: #00ff99; /* Neon green color */
+            color: #00ff99;
             font-size: 1.5rem;
             font-weight: bold;
             text-decoration: none;
@@ -126,15 +126,15 @@
         }
 
         .drone-section {
-            background-image: url('drone-bg.jpg'); /* Replace with your drone background image */
+            background-image: url('drone-bg.jpg');
         }
 
         .pc-section {
-            background-image: url('pc-bg.jpg'); /* Replace with your PC background image */
+            background-image: url('pc-bg.jpg');
         }
 
         .racing-section {
-            background-image: url('racing-bg.jpg'); /* Replace with your Racing Setup background image */
+            background-image: url('racing-bg.jpg');
         }
 
         @media screen and (max-width: 768px) {
@@ -147,11 +147,44 @@
                 padding: 15px 30px;
             }
         }
+
+        .creator {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+            text-shadow: 0 0 5px rgba(0, 255, 153, 0.7);
+        }
+
+        .instagram {
+            position: fixed;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.7);
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .instagram img {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 5px;
+        }
+
+        .instagram:hover {
+            transform: translateY(-50%) scale(1.1);
+            color: #00ff99;
+        }
     </style>
 </head>
 
 <body>
-    <h1>Things To Buy</h1>
+    <h1>Dreams to Fulfill</h1>
     <p>Explore and pursue your passions</p>
 
     <div class="section drone-section" id="droneSection">
@@ -172,18 +205,23 @@
         </a>
     </div>
 
+    <div class="creator">Created by Jnyananjan Sarkar</div>
+
+    <a href="https://www.instagram.com/jana_sarkar_0" class="instagram" target="_blank">
+        <img src="instagram-logo.png" alt="Instagram Logo">
+        Follow Me
+    </a>
+
     <script>
-        // Function to observe the sections and trigger animation
         const observer = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('show');
-                    observer.unobserve(entry.target); // Stop observing once the section is visible
+                    observer.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.5 }); // 50% of the element should be visible to trigger the event
+        }, { threshold: 0.5 });
 
-        // Start observing each section
         document.querySelectorAll('.section').forEach(section => {
             observer.observe(section);
         });
