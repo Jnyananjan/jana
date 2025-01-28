@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,9 +14,8 @@
 
         body {
             font-family: 'Roboto', sans-serif;
-            background: radial-gradient(circle, rgba(23, 27, 43, 1) 0%, rgba(34, 40, 55, 1) 100%);
+            background: url('your-image-url.jpg') no-repeat center center fixed; /* Replace 'your-image-url.jpg' with your main background image */
             background-size: cover;
-            background-attachment: fixed;
             color: white;
             text-align: center;
             height: 100%;
@@ -27,20 +27,6 @@
             overflow-x: hidden;
             overflow-y: auto;
             position: relative;
-            animation: backgroundAnimation 10s ease-in-out infinite;
-            scroll-behavior: smooth;
-        }
-
-        @keyframes backgroundAnimation {
-            0% {
-                background: radial-gradient(circle, rgba(23, 27, 43, 1) 0%, rgba(34, 40, 55, 1) 100%);
-            }
-            50% {
-                background: radial-gradient(circle, rgba(34, 40, 55, 1) 0%, rgba(23, 27, 43, 1) 100%);
-            }
-            100% {
-                background: radial-gradient(circle, rgba(23, 27, 43, 1) 0%, rgba(34, 40, 55, 1) 100%);
-            }
         }
 
         h1 {
@@ -51,33 +37,35 @@
             color: #00ff99;
             text-shadow: 0 0 20px rgba(0, 255, 153, 0.8), 0 0 30px rgba(0, 255, 153, 0.6);
             margin-bottom: 50px;
-            animation: glow 1.5s ease-in-out infinite alternate;
         }
 
-        @keyframes glow {
-            0% {
-                text-shadow: 0 0 10px rgba(0, 255, 153, 0.8), 0 0 30px rgba(0, 255, 153, 0.5);
-            }
-            100% {
-                text-shadow: 0 0 30px rgba(0, 255, 153, 1), 0 0 60px rgba(0, 255, 153, 0.7);
-            }
+        p {
+            font-size: 1.5rem;
+            margin-top: 20px;
         }
 
-        .button-container {
+        .section {
+            width: 100%;
+            height: 100vh;
             display: flex;
-            flex-wrap: wrap;
             justify-content: center;
-            gap: 30px;
-            z-index: 1;
-            margin-top: 50px;
-            transition: all 0.3s ease;
+            align-items: center;
+            opacity: 0;
+            transform: translateY(100px);
+            transition: opacity 1s, transform 1s;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .section.show {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .button {
             position: relative;
             padding: 20px 40px;
-            background: linear-gradient(135deg, #1a73e8, #34a853); /* Original color scheme */
-            color: white;
+            color: #00ff99; /* Neon green color */
             font-size: 1.5rem;
             font-weight: bold;
             text-decoration: none;
@@ -89,8 +77,15 @@
             z-index: 1;
             cursor: pointer;
             animation: pulse 2s infinite;
-            border: 3px solid transparent; /* Keep the border transparent */
+            border: 3px solid transparent;
             background-clip: padding-box;
+            text-shadow: 0 0 10px rgba(0, 255, 153, 0.8), 0 0 30px rgba(0, 255, 153, 0.5);
+        }
+
+        .button:hover {
+            transform: translateY(-10px) rotateX(10deg) rotateY(10deg);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            animation: buttonHover 0.5s ease-in-out infinite alternate;
         }
 
         @keyframes pulse {
@@ -98,29 +93,25 @@
                 transform: scale(1);
                 box-shadow: 0 0 20px rgba(255, 0, 0, 0.6), 0 0 50px rgba(255, 0, 0, 0.4);
             }
+
             50% {
                 transform: scale(1.05);
                 box-shadow: 0 0 30px rgba(255, 0, 0, 0.8), 0 0 60px rgba(255, 0, 0, 0.6);
             }
+
             100% {
                 transform: scale(1);
                 box-shadow: 0 0 20px rgba(255, 0, 0, 0.6), 0 0 50px rgba(255, 0, 0, 0.4);
             }
         }
 
-        .button:hover {
-            transform: translateY(-10px) rotateX(10deg) rotateY(10deg);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-            background: linear-gradient(135deg, #1a73e8, #34a853); /* Keep the original color */
-            animation: buttonHover 0.5s ease-in-out infinite alternate;
-        }
-
         @keyframes buttonHover {
             0% {
-                background: linear-gradient(135deg, #1a73e8, #34a853); /* Original color scheme */
+                background: linear-gradient(135deg, #1a73e8, #34a853);
             }
+
             100% {
-                background: linear-gradient(135deg, #34a853, #1a73e8); /* Keep the original color */
+                background: linear-gradient(135deg, #34a853, #1a73e8);
             }
         }
 
@@ -132,6 +123,18 @@
             text-transform: uppercase;
             font-weight: normal;
             letter-spacing: 2px;
+        }
+
+        .drone-section {
+            background-image: url('drone-bg.jpg'); /* Replace with your drone background image */
+        }
+
+        .pc-section {
+            background-image: url('pc-bg.jpg'); /* Replace with your PC background image */
+        }
+
+        .racing-section {
+            background-image: url('racing-bg.jpg'); /* Replace with your Racing Setup background image */
         }
 
         @media screen and (max-width: 768px) {
@@ -146,27 +149,45 @@
         }
     </style>
 </head>
+
 <body>
     <h1>Dreams to Fulfill</h1>
     <p>Explore and pursue your passions</p>
 
-    <div class="button-container">
+    <div class="section drone-section" id="droneSection">
         <a href="drone.html" class="button">Drone
             <span class="button-name">Futuristic Flight</span>
         </a>
+    </div>
+
+    <div class="section pc-section" id="pcSection">
         <a href="pc.html" class="button">PC
             <span class="button-name">Ultimate Power</span>
         </a>
+    </div>
+
+    <div class="section racing-section" id="racingSection">
         <a href="racing.html" class="button">Racing Setup
             <span class="button-name">Speed Thrills</span>
         </a>
-        <a href="room.html" class="button">Room
-            <span class="button-name">Dream Space</span>
-        </a>
-        <a href="travel.html" class="button">Travel
-            <span class="button-name">World Adventures</span>
-        </a>
     </div>
-</body>
-</html>
 
+    <script>
+        // Function to observe the sections and trigger animation
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                    observer.unobserve(entry.target); // Stop observing once the section is visible
+                }
+            });
+        }, { threshold: 0.5 }); // 50% of the element should be visible to trigger the event
+
+        // Start observing each section
+        document.querySelectorAll('.section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+
+</html>
