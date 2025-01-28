@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Racing Setup</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #1e2a47, #3f51b5, #00bcd4);
+            background-size: 400% 400%;
+            animation: gradientBG 8s ease infinite;
+            color: #fff;
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+            animation: textPop 1s ease-out;
+        }
+
+        p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            color: #b0bec5;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+        }
+
+        .button-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .button {
+            display: block;
+            padding: 20px;
+            background: rgba(255, 111, 97, 0.8);
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 15px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, background 0.3s ease;
+            opacity: 0;
+            animation: buttonPop 1s ease-out forwards;
+        }
+
+        .button:nth-child(1) { animation-delay: 0.2s; }
+        .button:nth-child(2) { animation-delay: 0.4s; }
+        .button:nth-child(3) { animation-delay: 0.6s; }
+        .button:nth-child(4) { animation-delay: 0.8s; }
+        .button:nth-child(5) { animation-delay: 1s; }
+
+        .button::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ff6f61, #ff9e4d);
+            transition: left 0.4s ease;
+        }
+
+        .button:hover::after {
+            left: 0;
+        }
+
+        .button:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 111, 97, 0.9);
+        }
+
+        .button-name {
+            font-size: 0.9rem;
+            color: #b0bec5;
+            display: block;
+            margin-top: 10px;
+            text-transform: uppercase;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 40px;
+            text-decoration: none;
+            font-size: 1.3rem;
+            padding: 15px 25px;
+            background: #000;
+            color: #fff;
+            font-weight: bold;
+            border-radius: 30px;
+            transition: background 0.3s ease, transform 0.3s ease;
+            opacity: 0;
+            animation: buttonPop 1s ease-out forwards;
+            animation-delay: 1.2s;
+        }
+
+        .back-link:hover {
+            background: rgba(0, 0, 0, 0.8);
+            transform: translateY(-3px);
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes textPop {
+            0% { opacity: 0; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes buttonPop {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <h1>Racing Setup</h1>
+    <p>Select a component for your racing setup:</p>
+
+    <div class="button-container">
+        <a href="#" class="button">Steering Wheel</a>
+        <a href="#" class="button">Pedals</a>
+        <a href="#" class="button">Racing Chair</a>
+        <a href="#" class="button">Shifter</a>
+        <a href="#" class="button">Monitor</a>
+    </div>
+
+    <a href="index.html" class="back-link">Go Back</a>
+</body>
+</html>
