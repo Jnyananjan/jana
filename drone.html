@@ -21,6 +21,7 @@
             text-transform: uppercase;
             letter-spacing: 2px;
             text-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+            animation: textPop 1s ease-out; /* Added popup animation */
         }
 
         p {
@@ -52,6 +53,56 @@
             overflow: hidden;
             box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
             transition: transform 0.3s ease, background 0.3s ease;
+            opacity: 0; /* Start with buttons invisible */
+            animation: buttonPop 1s ease-out forwards; /* Added popup animation */
+        }
+
+        .button:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+
+        .button:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+
+        .button:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+
+        .button:nth-child(4) {
+            animation-delay: 0.8s;
+        }
+
+        .button:nth-child(5) {
+            animation-delay: 1s;
+        }
+
+        .button:nth-child(6) {
+            animation-delay: 1.2s;
+        }
+
+        .button:nth-child(7) {
+            animation-delay: 1.4s;
+        }
+
+        .button:nth-child(8) {
+            animation-delay: 1.6s;
+        }
+
+        .button:nth-child(9) {
+            animation-delay: 1.8s;
+        }
+
+        .button:nth-child(10) {
+            animation-delay: 2s;
+        }
+
+        .button:nth-child(11) {
+            animation-delay: 2.2s;
+        }
+
+        .button:nth-child(12) {
+            animation-delay: 2.4s;
         }
 
         .button::after {
@@ -92,6 +143,9 @@
             background: rgba(255, 111, 97, 0.8);
             border-radius: 30px;
             transition: background 0.3s ease, transform 0.3s ease;
+            opacity: 0;
+            animation: buttonPop 1s ease-out forwards;
+            animation-delay: 2.6s; /* Added delay for Go Back button */
         }
 
         .back-link:hover {
@@ -103,6 +157,18 @@
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
+        }
+
+        /* Popup animation for the heading */
+        @keyframes textPop {
+            0% { opacity: 0; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        /* Popup animation for buttons */
+        @keyframes buttonPop {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
@@ -128,10 +194,10 @@
         <span class="button-name">Radiolink at10</span>
         </a>
         <a href="#" class="button">Battery</a>
+
         <a href="#" class="button">Charger</a>
     </div>
 
     <a href="index.html" class="back-link">Go Back</a>
 </body>
 </html>
-
