@@ -13,8 +13,9 @@
 
         body {
             font-family: 'Roboto', sans-serif;
-            background: url('your-background-image.jpg') no-repeat center center fixed;
+            background: radial-gradient(circle, rgba(23, 27, 43, 1) 0%, rgba(34, 40, 55, 1) 100%);
             background-size: cover;
+            background-attachment: fixed;
             color: white;
             text-align: center;
             height: 100%;
@@ -26,7 +27,20 @@
             overflow-x: hidden;
             overflow-y: auto;
             position: relative;
+            animation: backgroundAnimation 10s ease-in-out infinite;
             scroll-behavior: smooth;
+        }
+
+        @keyframes backgroundAnimation {
+            0% {
+                background: radial-gradient(circle, rgba(23, 27, 43, 1) 0%, rgba(34, 40, 55, 1) 100%);
+            }
+            50% {
+                background: radial-gradient(circle, rgba(34, 40, 55, 1) 0%, rgba(23, 27, 43, 1) 100%);
+            }
+            100% {
+                background: radial-gradient(circle, rgba(23, 27, 43, 1) 0%, rgba(34, 40, 55, 1) 100%);
+            }
         }
 
         h1 {
@@ -56,31 +70,58 @@
             gap: 30px;
             z-index: 1;
             margin-top: 50px;
+            transition: all 0.3s ease;
         }
 
         .button {
             position: relative;
             padding: 20px 40px;
-            background: linear-gradient(135deg, #1a73e8, #34a853);
+            background: linear-gradient(135deg, #1a73e8, #34a853); /* Original color scheme */
             color: white;
             font-size: 1.5rem;
             font-weight: bold;
             text-decoration: none;
             border-radius: 50px;
             text-align: center;
-            box-shadow: 0 0 15px rgba(255, 0, 0, 0.7), 0 0 30px rgba(255, 0, 0, 0.5);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
             transition: all 0.4s ease;
             overflow: hidden;
             z-index: 1;
             cursor: pointer;
-            border: 3px solid transparent;
+            animation: pulse 2s infinite;
+            border: 3px solid transparent; /* Keep the border transparent */
             background-clip: padding-box;
         }
 
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 20px rgba(255, 0, 0, 0.6), 0 0 50px rgba(255, 0, 0, 0.4);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 0 30px rgba(255, 0, 0, 0.8), 0 0 60px rgba(255, 0, 0, 0.6);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 20px rgba(255, 0, 0, 0.6), 0 0 50px rgba(255, 0, 0, 0.4);
+            }
+        }
+
         .button:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 0 20px rgba(255, 0, 0, 1), 0 0 40px rgba(255, 0, 0, 0.8);
-            background: linear-gradient(135deg, #1a73e8, #34a853);
+            transform: translateY(-10px) rotateX(10deg) rotateY(10deg);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(135deg, #1a73e8, #34a853); /* Keep the original color */
+            animation: buttonHover 0.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes buttonHover {
+            0% {
+                background: linear-gradient(135deg, #1a73e8, #34a853); /* Original color scheme */
+            }
+            100% {
+                background: linear-gradient(135deg, #34a853, #1a73e8); /* Keep the original color */
+            }
         }
 
         .button-name {
@@ -110,43 +151,22 @@
     <p>Explore and pursue your passions</p>
 
     <div class="button-container">
-        <a href="#drone" class="button">Drone
+        <a href="drone.html" class="button">Drone
             <span class="button-name">Futuristic Flight</span>
         </a>
-        <a href="#pc" class="button">PC
+        <a href="pc.html" class="button">PC
             <span class="button-name">Ultimate Power</span>
         </a>
-        <a href="#racing" class="button">Racing Setup
+        <a href="racing.html" class="button">Racing Setup
             <span class="button-name">Speed Thrills</span>
         </a>
-        <a href="#room" class="button">Room
+        <a href="room.html" class="button">Room
             <span class="button-name">Dream Space</span>
         </a>
-        <a href="#travel" class="button">Travel
+        <a href="travel.html" class="button">Travel
             <span class="button-name">World Adventures</span>
         </a>
     </div>
-
-    <!-- Sections -->
-    <section id="drone">
-        <h2>Drone</h2>
-        <p>Discover the latest in drone technology.</p>
-    </section>
-    <section id="pc">
-        <h2>PC</h2>
-        <p>Explore powerful PC setups for gaming and productivity.</p>
-    </section>
-    <section id="racing">
-        <h2>Racing Setup</h2>
-        <p>Get the best racing equipment for an immersive experience.</p>
-    </section>
-    <section id="room">
-        <h2>Room</h2>
-        <p>Create your dream space with our design tips.</p>
-    </section>
-    <section id="travel">
-        <h2>Travel</h2>
-        <p>Plan your next adventure with our travel guides.</p>
-    </section>
 </body>
 </html>
+
