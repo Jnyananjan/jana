@@ -1,168 +1,209 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PC Components</title>
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #1e2a47, #3f51b5, #00bcd4);
-            background-size: 400% 400%;
-            animation: gradientBG 8s ease infinite;
-            color: #fff;
-            text-align: center;
-            padding: 50px 20px;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PC Component Selector</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #2e3a59;
+      color: white;
+      text-align: center;
+      padding: 50px 20px;
+    }
 
-        h1 {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
-            animation: textPop 1s ease-out;
-        }
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 30px;
+    }
 
-        p {
-            font-size: 1.3rem;
-            margin-bottom: 30px;
-            color: #b0bec5;
-            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
-        }
+    .button-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
 
-        .button-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 20px;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
+    .popup-button {
+      background: #ff6f61;
+      color: #fff;
+      padding: 15px 25px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.3s ease;
+    }
 
-        .button {
-            display: block;
-            padding: 20px;
-            background: rgba(255, 111, 97, 0.8);
-            color: #fff;
-            font-size: 1.1rem;
-            font-weight: bold;
-            text-decoration: none;
-            border-radius: 15px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease, background 0.3s ease;
-            opacity: 0;
-            animation: buttonPop 1s ease-out forwards;
-        }
+    .popup-button:hover {
+      background: #ff3b2e;
+    }
 
-        .button:nth-child(1) { animation-delay: 0.2s; }
-        .button:nth-child(2) { animation-delay: 0.4s; }
-        .button:nth-child(3) { animation-delay: 0.6s; }
-        .button:nth-child(4) { animation-delay: 0.8s; }
-        .button:nth-child(5) { animation-delay: 1s; }
-        .button:nth-child(6) { animation-delay: 1.2s; }
-        .button:nth-child(7) { animation-delay: 1.4s; }
-        .button:nth-child(8) { animation-delay: 1.6s; }
+    /* Modal Styling */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 10;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.6);
+      justify-content: center;
+      align-items: center;
+    }
 
-        .button::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #ff6f61, #ff9e4d);
-            transition: left 0.4s ease;
-        }
+    .modal-content {
+      background: #fff;
+      color: #000;
+      padding: 30px;
+      border-radius: 12px;
+      max-width: 400px;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+    }
 
-        .button:hover::after {
-            left: 0;
-        }
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      background: transparent;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #333;
+    }
 
-        .button:hover {
-            transform: translateY(-5px);
-            background: rgba(255, 111, 97, 0.9);
-        }
+    .modal-link {
+      display: inline-block;
+      margin: 10px 10px 0;
+      padding: 10px 20px;
+      background: #1976d2;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 8px;
+    }
 
-        .button-name {
-            font-size: 0.9rem;
-            color: #b0bec5;
-            display: block;
-            margin-top: 10px;
-            text-transform: uppercase;
-        }
-
-        .back-link {
-            display: inline-block;
-            margin-top: 40px;
-            text-decoration: none;
-            font-size: 1.3rem;
-            padding: 15px 25px;
-            background: #000;
-            color: #fff;
-            font-weight: bold;
-            border-radius: 30px;
-            transition: background 0.3s ease, transform 0.3s ease;
-            opacity: 0;
-            animation: buttonPop 1s ease-out forwards;
-            animation-delay: 2s;
-        }
-
-        .back-link:hover {
-            background: rgba(0, 0, 0, 0.8);
-            transform: translateY(-3px);
-        }
-
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        @keyframes textPop {
-            0% { opacity: 0; transform: scale(0.8); }
-            100% { opacity: 1; transform: scale(1); }
-        }
-
-        @keyframes buttonPop {
-            0% { opacity: 0; transform: translateY(20px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-    </style>
+    .modal-link:hover {
+      background: #0d47a1;
+    }
+  </style>
 </head>
 <body>
-    <h1>PC Components</h1>
-    <p>Select a component to explore:</p>
+  <h1>Budget PC Components</h1>
 
-    <div class="button-container">
-        <a href="https://www.vedantcomputers.com/amd-ryzen-5-5500-processor-100-100000457box?search=55" class="button">Processor
-        <span class="button-name">AMD Ryzen 5 5500</span>
-        </a>
-        <a href="https://computechstore.in/product/sapphire-rx-6600-pulse-8gb/" class="button">GPU
-        <span class="button-name">RX 6600</span>
-        </a>
-        <a href="https://www.amazon.in/Gigabyte-B450M-DS3H-Bluetooth-Motherboard/dp/B07VQJYR99?source=ps-sl-shoppingads-lpcontext&ref_=fplfs&psc=1&smid=AJ6SIZC8YQDZX" class="button">Motherboard
-        <span class="button-name">Gigabyte B550M DS3H WIFI</span>
-        </a>
-        <a href="https://www.vedantcomputers.com/adata-xpg-gammix-d30-16gb-16gbx1-ddr4-3200mhz-red-memory-ax4u320016g16a-sr30?search=ddr4" class="button">RAM
-        <span class="button-name">Adata XPG Gammix D30 16GB</span>
-        </a>
-        <a href="https://www.vedantcomputers.com/pc-components/storage/solid-state-drive/wd-blue-sn5000-1tb-wds100t4b0e" class="button">Storage
-        <span class="button-name">WD Blue SN5000</span>
-        </a>
-        <a href="https://www.vedantcomputers.com/msi-mag-a550bn-550-watt-80-plus-bronze-power-supply?search=MSI%20MAG%20" class="button">Power Supply
-        <span class="button-name">MSI MAG A550BN</span>
-        </a>
-        <a href="#" class="button">Cabinet
-        <span class="button-name">...</span>
-        </a>
-        <a href="https://www.vedantcomputers.com/pc-components/fans-and-cooling/cpu-cooler/ant-esports-ice-360-white?sort=p.price&order=ASC&limit=100" class="button">Cooling System
-        <span class="button-name">Ant Esports ICE-360</span>
-        </a>
+  <div class="button-container">
+    <button class="popup-button" onclick="openModal('modal1')">CPU</button>
+    <button class="popup-button" onclick="openModal('modal2')">GPU</button>
+    <button class="popup-button" onclick="openModal('modal3')">RAM</button>
+    <button class="popup-button" onclick="openModal('modal4')">Storage</button>
+    <button class="popup-button" onclick="openModal('modal5')">Motherboard</button>
+    <button class="popup-button" onclick="openModal('modal6')">Power Supply</button>
+    <button class="popup-button" onclick="openModal('modal8')">Cooling</button>
+    <button class="popup-button" onclick="openModal('modal7')">Case</button>
+  </div>
+
+  <!-- Modals for all 8 buttons -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <button class="close-btn" onclick="closeModal('modal1')">&times;</button>
+      <h2>CPU</h2>
+      <p>Choose your processing power.</p>
+      <a href="https://www.vedantcomputers.com/amd-ryzen-5-5500-processor-100-100000457box?search=55" class="modal-link" target="_blank">R5 5500</a>
+      <a href="https://www.vedantcomputers.com/amd-ryzen-5-5600x-processor-100-100000065box?search=5600x" class="modal-link" target="_blank">R5 5600x</a>
+       <a href="https://www.vedantcomputers.com/intel-core-i5-12400f-processor?search=i5%2012" class="modal-link" target="_blank">i5 12400f</a>
     </div>
+  </div>
 
-    <a href="index.html" class="back-link">Go Back</a>
+  <div id="modal2" class="modal">
+    <div class="modal-content">
+      <button class="close-btn" onclick="closeModal('modal2')">&times;</button>
+      <h2>GPU</h2>
+      <p>Boost your visuals and gaming.</p>
+      <a href="https://www.vedantcomputers.com/pc-components/graphics-cards/gpu/asrock-phantom-g-r-rx550-4g" class="modal-link" target="_blank">RX 550</a>
+      <a href="https://computechstore.in/product/sapphire-rx-6600-pulse-8gb/" class="modal-link" target="_blank">RX 6600</a>
+    </div>
+  </div>
+
+  <div id="modal3" class="modal">
+    <div class="modal-content">
+      <button class="close-btn" onclick="closeModal('modal3')">&times;</button>
+      <h2>RAM</h2>
+      <p>Memory to keep your tasks running smoothly.</p>
+      <a href="https://www.vedantcomputers.com/adata-xpg-gammix-d30-16gb-16gbx1-ddr4-3200mhz-red-memory-ax4u320016g16a-sr30?search=ddr4" class="modal-link" target="_blank">Adata XPG Gaming ddr4</a>
+      <a href="https://www.vedantcomputers.com/adata-xpg-lancer-blade-16gb-ddr5-5600mhz-ax5u5600c4616g-slabbk" class="modal-link" target="_blank">Adata XPG Lancer ddr5</a>
+    </div>
+  </div>
+
+  <div id="modal4" class="modal">
+    <div class="modal-content">
+      <button class="close-btn" onclick="closeModal('modal4')">&times;</button>
+      <h2>Storage</h2>
+      <p>Speed and capacity for all your files.</p>
+      <a href="https://www.vedantcomputers.com/pc-components/storage/solid-state-drive/wd-blue-sn5000-1tb-wds100t4b0e" class="modal-link" target="_blank">WD Blue 1TB GEN4</a>
+    </div>
+  </div>
+
+  <div id="modal5" class="modal">
+    <div class="modal-content">
+      <button class="close-btn" onclick="closeModal('modal5')">&times;</button>
+      <h2>Motherboard</h2>
+      <p>The base of your PC — compatibility matters!</p>
+      <a href="https://www.amazon.in/Gigabyte-B450M-DS3H-Bluetooth-Motherboard/dp/B07VQJYR99?source=ps-sl-shoppingads-lpcontext&ref_=fplfs&psc=1&smid=AJ6SIZC8YQDZX" class="modal-link" target="_blank">Gigabyte B450M DS3H WiFi</a>
+      <a href="https://www.vedantcomputers.com/asus-b760m-ayw-wifi?srsltid=AfmBOoqvx6e-ttitm4M3EJz4Yh4_W3adXvaXU0RIC-wgbwg_44NAgCsy41I" class="modal-link" target="_blank">Asus B760M-AYW WIFI</a>
+    </div>
+  </div>
+
+  <div id="modal6" class="modal">
+    <div class="modal-content">
+      <button class="close-btn" onclick="closeModal('modal6')">&times;</button>
+      <h2>Power Supply</h2>
+      <p>Reliable power for your system.</p>
+      <a href="https://www.vedantcomputers.com/msi-mag-a550bn-550-watt-80-plus-bronze-power-supply?search=MSI%20MAG%20" class="modal-link" target="_blank">MSI MAG A550BN 550</a>
+    </div>
+  </div>
+
+  <div id="modal7" class="modal">
+    <div class="modal-content">
+      <button class="close-btn" onclick="closeModal('modal7')">&times;</button>
+      <h2>Case</h2>
+      <p>Style, airflow, and function all in one.</p>
+      <a href="https://www.vedantcomputers.com/pc-components/chassis/cabinet/deepcool-cg530-4f-r-cg530-bkada4-g-1?sort=p.price&order=ASC&limit=100" class="modal-link" target="_blank">Deepcool CG530 4F </a>
+      <a href="https://www.vedantcomputers.com/ant-esports-crystal-arc-white" class="modal-link" target="_blank">Ant Esports Crystal ARC</a>
+    </div>
+  </div>
+
+  <div id="modal8" class="modal">
+    <div class="modal-content">
+      <button class="close-btn" onclick="closeModal('modal8')">&times;</button>
+      <h2>Cooling</h2>
+      <p>Keep your PC chill and efficient.</p>
+      <a href="https://www.vedantcomputers.com/pc-components/fans-and-cooling/cpu-cooler/ant-esports-ice-360-white?sort=p.price&order=ASC&limit=100" class="modal-link" target="_blank">Ant Esports ICE-360 </a>
+      <a href="#" class="modal-link" target="_blank">USE STOCK COOLER BUY ONE LATER !!</a>
+    </div>
+  </div>
+
+  <script>
+    function openModal(id) {
+      document.getElementById(id).style.display = "flex";
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).style.display = "none";
+    }
+
+    // Optional: Close modal if user clicks outside the content
+    window.onclick = function(event) {
+      const modals = document.querySelectorAll('.modal');
+      modals.forEach(modal => {
+        if (event.target === modal) {
+          modal.style.display = "none";
+        }
+      });
+    };
+  </script>
 </body>
 </html>
