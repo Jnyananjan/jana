@@ -41,7 +41,7 @@
       transition: background 0.3s ease, transform 0.3s ease;
       opacity: 0;
       animation: fadeInButtons 1s ease-in-out forwards;
-      animation-delay: 0s; /* Default delay, will be changed per button */
+      animation-delay: 0s; /* Default delay */
     }
 
     .popup-button:hover {
@@ -111,7 +111,7 @@
       margin-top: 30px;
       opacity: 0;
       animation: fadeInButtons 1s ease-in-out forwards;
-      animation-delay: 0.8s; /* Added delay for the "Back to Index" button */
+      animation-delay: 2.5s; /* Increased delay for back button */
     }
 
     .back-button:hover {
@@ -167,14 +167,14 @@
   <h1>Budget PC Components</h1>
 
   <div class="button-container">
-    <button class="popup-button" style="animation-delay: 0s;" onclick="openModal('modal1')">CPU</button>
-    <button class="popup-button" style="animation-delay: 0.1s;" onclick="openModal('modal2')">GPU</button>
-    <button class="popup-button" style="animation-delay: 0.2s;" onclick="openModal('modal3')">RAM</button>
-    <button class="popup-button" style="animation-delay: 0.3s;" onclick="openModal('modal4')">Storage</button>
-    <button class="popup-button" style="animation-delay: 0.4s;" onclick="openModal('modal5')">Motherboard</button>
-    <button class="popup-button" style="animation-delay: 0.5s;" onclick="openModal('modal6')">Power Supply</button>
-    <button class="popup-button" style="animation-delay: 0.6s;" onclick="openModal('modal8')">Cooling</button>
-    <button class="popup-button" style="animation-delay: 0.7s;" onclick="openModal('modal7')">Case</button>
+    <button class="popup-button" style="animation-delay: 0.5s;" onclick="openModal('modal1')">CPU</button>
+    <button class="popup-button" style="animation-delay: 0.75s;" onclick="openModal('modal2')">GPU</button>
+    <button class="popup-button" style="animation-delay: 1s;" onclick="openModal('modal3')">RAM</button>
+    <button class="popup-button" style="animation-delay: 1.25s;" onclick="openModal('modal4')">Storage</button>
+    <button class="popup-button" style="animation-delay: 1.5s;" onclick="openModal('modal5')">Motherboard</button>
+    <button class="popup-button" style="animation-delay: 1.75s;" onclick="openModal('modal6')">Power Supply</button>
+    <button class="popup-button" style="animation-delay: 2s;" onclick="openModal('modal8')">Cooling</button>
+    <button class="popup-button" style="animation-delay: 2.25s;" onclick="openModal('modal7')">Case</button>
   </div>
 
   <!-- Modals for all 8 buttons -->
@@ -253,12 +253,11 @@
       <h2>Cooling</h2>
       <p>Keep your PC chill and efficient.</p>
       <a href="https://www.vedantcomputers.com/pc-components/fans-and-cooling/cpu-cooler/ant-esports-ice-360-white?sort=p.price&order=ASC&limit=100" class="modal-link" target="_blank">Ant Esports ICE-360 </a>
-      <a href="#" class="modal-link" target="_blank">USE STOCK COOLER BUY ONE LATER !!</a>
+      <a href="#" class="modal-link" target="_blank">Deepcool - AK400</a>
     </div>
   </div>
 
-  <!-- Back to Index Button -->
-  <button class="back-button" onclick="window.location.href='index.html'">Back to Index</button>
+  <button class="back-button" onclick="window.location.href='index.html'">Go Back</button>
 
   <script>
     function openModal(modalId) {
@@ -271,3 +270,4 @@
   </script>
 </body>
 </html>
+  
