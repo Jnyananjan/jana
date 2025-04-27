@@ -7,15 +7,19 @@
   <style>
     body {
       font-family: 'Poppins', sans-serif;
-      background: #2e3a59;
       color: white;
       text-align: center;
       padding: 50px 20px;
+      animation: fadeIn 1s ease-in-out;
+      background: linear-gradient(45deg, #6a11cb, #2575fc);
+      background-size: 400% 400%;
+      animation: gradientAnimation 15s ease infinite;
     }
 
     h1 {
       font-size: 2.5rem;
       margin-bottom: 30px;
+      animation: fadeInUp 1.5s ease-in-out;
     }
 
     .button-container {
@@ -34,11 +38,15 @@
       border-radius: 10px;
       cursor: pointer;
       font-size: 1rem;
-      transition: background 0.3s ease;
+      transition: background 0.3s ease, transform 0.3s ease;
+      opacity: 0;
+      animation: fadeInButtons 1s ease-in-out forwards;
+      animation-delay: 0s; /* Default delay, will be changed per button */
     }
 
     .popup-button:hover {
       background: #ff3b2e;
+      transform: scale(1.1);
     }
 
     /* Modal Styling */
@@ -90,20 +98,83 @@
     .modal-link:hover {
       background: #0d47a1;
     }
+
+    .back-button {
+      background: #ff6f61;
+      color: white;
+      padding: 15px 25px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.3s ease;
+      margin-top: 30px;
+      opacity: 0;
+      animation: fadeInButtons 1s ease-in-out forwards;
+      animation-delay: 0.8s; /* Added delay for the "Back to Index" button */
+    }
+
+    .back-button:hover {
+      background: #ff3b2e;
+    }
+
+    /* Keyframes for animations */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeInButtons {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes gradientAnimation {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
   </style>
 </head>
 <body>
   <h1>Budget PC Components</h1>
 
   <div class="button-container">
-    <button class="popup-button" onclick="openModal('modal1')">CPU</button>
-    <button class="popup-button" onclick="openModal('modal2')">GPU</button>
-    <button class="popup-button" onclick="openModal('modal3')">RAM</button>
-    <button class="popup-button" onclick="openModal('modal4')">Storage</button>
-    <button class="popup-button" onclick="openModal('modal5')">Motherboard</button>
-    <button class="popup-button" onclick="openModal('modal6')">Power Supply</button>
-    <button class="popup-button" onclick="openModal('modal8')">Cooling</button>
-    <button class="popup-button" onclick="openModal('modal7')">Case</button>
+    <button class="popup-button" style="animation-delay: 0s;" onclick="openModal('modal1')">CPU</button>
+    <button class="popup-button" style="animation-delay: 0.1s;" onclick="openModal('modal2')">GPU</button>
+    <button class="popup-button" style="animation-delay: 0.2s;" onclick="openModal('modal3')">RAM</button>
+    <button class="popup-button" style="animation-delay: 0.3s;" onclick="openModal('modal4')">Storage</button>
+    <button class="popup-button" style="animation-delay: 0.4s;" onclick="openModal('modal5')">Motherboard</button>
+    <button class="popup-button" style="animation-delay: 0.5s;" onclick="openModal('modal6')">Power Supply</button>
+    <button class="popup-button" style="animation-delay: 0.6s;" onclick="openModal('modal8')">Cooling</button>
+    <button class="popup-button" style="animation-delay: 0.7s;" onclick="openModal('modal7')">Case</button>
   </div>
 
   <!-- Modals for all 8 buttons -->
@@ -114,7 +185,7 @@
       <p>Choose your processing power.</p>
       <a href="https://www.vedantcomputers.com/amd-ryzen-5-5500-processor-100-100000457box?search=55" class="modal-link" target="_blank">R5 5500</a>
       <a href="https://www.vedantcomputers.com/amd-ryzen-5-5600x-processor-100-100000065box?search=5600x" class="modal-link" target="_blank">R5 5600x</a>
-       <a href="https://www.vedantcomputers.com/intel-core-i5-12400f-processor?search=i5%2012" class="modal-link" target="_blank">i5 12400f</a>
+      <a href="https://www.vedantcomputers.com/intel-core-i5-12400f-processor?search=i5%2012" class="modal-link" target="_blank">i5 12400f</a>
     </div>
   </div>
 
@@ -186,24 +257,17 @@
     </div>
   </div>
 
+  <!-- Back to Index Button -->
+  <button class="back-button" onclick="window.location.href='index.html'">Back to Index</button>
+
   <script>
-    function openModal(id) {
-      document.getElementById(id).style.display = "flex";
+    function openModal(modalId) {
+      document.getElementById(modalId).style.display = 'flex';
     }
 
-    function closeModal(id) {
-      document.getElementById(id).style.display = "none";
+    function closeModal(modalId) {
+      document.getElementById(modalId).style.display = 'none';
     }
-
-    // Optional: Close modal if user clicks outside the content
-    window.onclick = function(event) {
-      const modals = document.querySelectorAll('.modal');
-      modals.forEach(modal => {
-        if (event.target === modal) {
-          modal.style.display = "none";
-        }
-      });
-    };
   </script>
 </body>
 </html>
